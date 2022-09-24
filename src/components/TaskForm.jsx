@@ -12,7 +12,6 @@ export const TaskForm = () => {
   // Form
 
   const [task, setTask] = useState({
-    id: nanoid(5),
     title: "",
     description: "",
   });
@@ -24,6 +23,7 @@ export const TaskForm = () => {
     setTask({
       ...task,
       [name]: description,
+      id: nanoid(5),
     });
   };
 
