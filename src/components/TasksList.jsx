@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { deleteTask } from "../features/tasks/taskSlice";
 
 export const TasksList = () => {
@@ -12,9 +13,20 @@ export const TasksList = () => {
     dispatch(deleteTask(id));
   };
 
-  console.log(tasks);
+  // console.log(tasks);
   return (
     <div>
+      <header className="flex justify-around w-full">
+        <h1>Tasks {tasks.length}</h1>
+        <nav className="my-2">
+          <Link
+            to="/create-task"
+            className=" px-4 py-2 border rounded-xl bg-gray-500 hover:bg-slate-700 text-white font-semibold"
+          >
+            Create Task
+          </Link>
+        </nav>
+      </header>
       {tasks.map((task) => (
         <div key={task.id} className="border mb-5 p-4">
           <h2 className="text-lg font-bold font-mono">{task.title}</h2>
@@ -25,6 +37,7 @@ export const TasksList = () => {
           >
             Delete
           </button>
+          <Link to={`/edit-task/${task.id}`}>Edit</Link>
         </div>
       ))}
     </div>
